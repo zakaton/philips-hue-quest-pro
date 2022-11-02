@@ -2,7 +2,11 @@
   <head>
     <title>Philips Hue x Quest Pro</title>
     <script src="src/aframe.min.js"></script>
+    <script src="https://rawgit.com/blairmacintyre/aframe-look-at-billboard-component/master/dist/aframe-look-at-billboard-component.min.js"></script>
     <script src="src/PhilipsHue.js"></script>
+    <script src="src/philips-hue-component.js"></script>
+    <script src="src/philips-hue-controller-component.js"></script>
+    <script src="https://gftruj.github.io/hand.tracking.controls.extras/dist/aframe-hand-tracking-controls-extras.js"></script>
   </head>
   <style>
     html,
@@ -42,9 +46,36 @@
       </button>
     </div>
 
-    <a-scene></a-scene>
+    <a-scene>
+      <a-entity visible="true"
+        ><a-entity
+          hand-tracking-controls="hand: left"
+          hand-tracking-extras
+        ></a-entity>
+        <a-entity
+          hand-tracking-controls="hand: right"
+          hand-tracking-extras
+        ></a-entity
+      ></a-entity>
+
+      <a-entity
+        billboard
+        position="0 1.6 -1"
+        philips-hue="ip: IP_ADDRESS; username: USERNAME;"
+      ></a-entity>
+
+      <a-camera
+        ><a-entity
+          cursor="fuse: true; fuseTimeout: 500"
+          position="0 0 -0.1"
+          _geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+          _material="color: black; shader: flat"
+          raycaster="objects: [data-raycastable]"
+        >
+        </a-entity>
+
+        <a-entity philips-hue-controller position="0 -0.3 -0.5"></a-entity>
+      </a-camera>
+    </a-scene>
   </body>
-  <script>
-    const philipsHue = new PhilipsHue("IP_ADDRESS", "USERNAME");
-  </script>
 </html>

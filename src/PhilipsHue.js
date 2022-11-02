@@ -1,11 +1,13 @@
 class PhilipsHue {
-  constructor(ip, username) {
+  constructor(ip, username, index = 1) {
     this.ip = ip;
     this.username = username;
+    this.index = index;
+
     this.url = `${ip}/api/${username}`;
   }
   async getInformation() {
-    const response = await fetch(`${this.url}/lights/1`);
+    const response = await fetch(`${this.url}/lights/${this.index}`);
     const json = await response.json();
     return json;
   }
@@ -14,7 +16,7 @@ class PhilipsHue {
     return information.state;
   }
   async setState(newState) {
-    const response = await fetch(`${this.url}/lights/1/state`, {
+    const response = await fetch(`${this.url}/lights/${this.index}/state`, {
       method: "PUT",
       body: JSON.stringify(newState),
     });
