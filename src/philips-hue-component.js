@@ -56,7 +56,7 @@ AFRAME.registerComponent("philips-hue", {
 
     this.sphereEntity = document.createElement("a-sphere");
     this.sphereEntity.setAttribute("color", "yellow");
-    this.sphereEntity.setAttribute("radius", "0.2");
+    this.sphereEntity.setAttribute("radius", "0.4");
     this.sphereEntity.setAttribute("data-raycastable", "");
     this.sphereEntity.setAttribute("visible", "false");
     this.el.appendChild(this.sphereEntity);
